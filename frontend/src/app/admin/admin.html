@@ -1,0 +1,8 @@
+<div>
+  @if(user().username){
+    <h1 class="text-center my-3">Bienvenue {{user().username}}</h1>
+  }@else {
+    <h1 class="text-center my-3">Connexion administrateur</h1>
+  }
+  <router-outlet></router-outlet>
+</div>

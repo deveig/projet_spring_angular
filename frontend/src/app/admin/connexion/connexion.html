@@ -1,0 +1,36 @@
+<div class="container p-5">
+  <h2 class="text-center">Se connecter</h2>
+  <form (ngSubmit)="seConnecter()" #form="ngForm" class="m-2 p-5">
+    <div class="field">
+      <label class="form-label" for="username">Nom d'administrateur</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        required
+        [(ngModel)]="user.username"
+        #username="ngModel"
+      />
+    </div>
+    <div class="field">
+      <label class="form-label" for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        [(ngModel)]="user.password"
+        #password="ngModel"
+        required
+      />
+    </div>
+    @if(message()){
+    <p class="error">{{ message() }}</p>
+    }
+    <input class="actions my-3" type="submit" value="Se connecter" [disabled]="form.invalid" />
+  </form>
+  <div class="link mx-2 px-5">
+    <a routerLink="/inscription-admin">Créer un compte administrateur</a>
+  </div>
+</div>

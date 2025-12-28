@@ -1,0 +1,46 @@
+<div class="text-center mx-3">
+  <h1 class="my-3">La boutique</h1>
+  <p></p>
+  <h2>Les tisanes</h2>
+  <div class="row my-5">
+    <div class="col-2">
+      <label class="form-label" for="criterias">Le parfum</label>
+      <select
+        (change)="selectByCriteria($event)"
+        id="criterias"
+        name="criterias"
+        class="form-select text-center"
+      >
+        <option value="tous" selected>--Tous--</option>
+        @for(c of criterias; track $index){
+        <option [value]="c">{{ c }}</option>
+        }
+      </select>
+    </div>
+    <ul class="col-10 row">
+      @for(p of products(); track $index){
+      <li class="col-3 card m-3 p-3">
+        <a [routerLink]="['/product-details', p.id]">
+          <img class="card-img-top img-fluid" [src]="`${p.image}.jpg`" [alt]="`${p.name}`" />
+          <h3 class="card-title">{{ p.name }}</h3>
+          <p class="card-text">
+            @for(criteria of p.description.split('-'); track $index){
+            <span class="badge rounded-pill text-bg-light">{{ criteria }}</span>
+            }
+          </p>
+          <div class="row align-items-center">
+            <strong>{{ p.price }}€</strong>
+          </div>
+          <div class="row"></div>
+        </a>
+        <button class="btn btn-light m-3 col-10" type="submit" (click)="addToCart($index)">Ajouer au panier</button>
+      </li>
+      }@empty {
+      <li>Il n'y a pas de tisanes</li>
+      }
+    </ul>
+  </div>
+  @if(message()){
+  <p class="alert alert-danger">{{ message() }}</p>
+  }
+</div>

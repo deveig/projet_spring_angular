@@ -1,0 +1,56 @@
+<div class="container">
+  <h2 class="text-center">Modifier un produit</h2>
+  @if(message()){
+  <p class="alert alert-danger">{{ message() }}</p>
+  }
+  <app-generic-product-form [product]="product()" [buttonName]="buttonName" (sendMethod)="changeProduct()" />
+</div>
+<!-- <form (ngSubmit)="changeProduct" #form="ngForm">
+  <div>
+    <label for="name" class="form-label">Nom</label>
+    <input
+      id="name"
+      name="name"
+      [(ngModel)]="product().name"
+      #name="ngModel"
+      class="form-control"
+      required
+    />
+  </div>
+  <div>
+    <label for="description" class="form-label">Description (liste des parfums)</label>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="product().description"
+      #description="ngModel"
+      class="form-control"
+      required
+      rows="5"
+      cols="7"
+    ></textarea>
+  </div>
+  <div>
+    <label for="price" class="form-label">Prix</label>
+    <input
+      id="price"
+      name="price"
+      [(ngModel)]="product().price"
+      #price="ngModel"
+      class="form-control"
+      required
+    />
+    </div>
+    <div>
+    <label for="quantity" class="form-label">Quantité</label>
+    <input
+      id="quantity"
+      name="quantity"
+      [(ngModel)]="product().quantity"
+      #quantity="ngModel"
+      class="form-control"
+      required
+    />
+  </div>
+  <input type="submit" value="Enregistrer" class="btn btn-ligth"/>
+</form> -->

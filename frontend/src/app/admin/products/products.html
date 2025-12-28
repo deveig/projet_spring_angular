@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="text-center my-3">Gestion des produits</h2>
+  <ul class="col-10 row">
+    @for(p of products(); track $index){
+    <li class="col-3 card m-3 p-3">
+      <img class="card-img-top img-fluid" [src]="`${p.image}.jpg`" [alt]="`${p.name}`" />
+      <h3 class="card-title">{{ p.name }}</h3>
+      <p class="card-text">
+        @for(criteria of p.description!.split('-'); track $index){
+        <span class="badge rounded-pill text-bg-light">{{ criteria }}</span>
+        }
+      </p>
+      <div>
+        Prix : <strong>{{ p.price }}€</strong>
+      </div>
+      <div>
+        Quantité : <strong>{{ p.quantity }}</strong>
+      </div>
+      <a [routerLink]="['/admin/product-edit', p.id]">Modifier le produit</a>
+      <button class="btn btn-danger my-3" aria-label="supprimer le produit" (click)="delete($index)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </li>
+    }@empty {
+    <li>Il n'y a pas de tisanes</li>
+    }
+  </ul>
+  <a routerLink="/admin/product-form">Ajouter un produit</a>
+  @if(message()){
+  <p class="alert alert-danger">{{message()}}</p>
+  }
+</div>

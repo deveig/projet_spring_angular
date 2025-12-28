@@ -1,0 +1,99 @@
+<form #form="ngForm">
+  <div>
+    <label for="name" class="form-label">Nom</label>
+    <input
+      id="name"
+      name="name"
+      [(ngModel)]="product()!.name"
+      #name="ngModel"
+      class="form-control"
+      required
+      [value]="product()!.name"
+      pattern="\D+"
+    />
+  </div>
+  @if(name.hasError('required')){
+  <p class="alert alert-warning">Le nom est obligatoire</p>
+  } @if(name.hasError('pattern')){
+  <p class="alert alert-warning">Veuillez renseigner le nom du produit</p>
+  }
+  <div>
+    <label for="description" class="form-label">Description (liste des parfums)</label>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="product()!.description"
+      #description="ngModel"
+      class="form-control"
+      required
+      rows="5"
+      cols="7"
+      [value]="product()!.description"
+      pattern="(-[A-Z][a-z]+)+"
+    ></textarea>
+  </div>
+  @if(description.hasError('required')){
+  <p class="alert alert-warning">La description est obligatoire</p>
+  } @if(description.hasError('pattern')){
+  <p class="alert alert-warning">
+    Veuillez renseigner la description du produit (ex: -Menthe-Camomille, ...)
+  </p>
+  }
+  <div>
+    <label class="form-label" for="image">Image</label>
+    <input
+      class="form-control"
+      id="image"
+      name="image"
+      type="file"
+      accept="image/jpg, image/jpeg"
+      required
+      [(ngModel)]="product()!.image"
+      #image="ngModel"
+      [value]="product()!.image"
+    />
+  </div>
+  @if(image.hasError('required')){
+  <p class="alert alert-warning">L'image est obligatoire</p>
+  }
+  <div>
+    <label for="price" class="form-label">Prix</label>
+    <input
+      id="price"
+      name="price"
+      type="number"
+      step="0.01"
+      min="0"
+      max="100"
+      [(ngModel)]="product()!.price"
+      #price="ngModel"
+      class="form-control"
+      required
+      [value]="product()!.price"
+    />
+  </div>
+  @if(price.hasError('required')){
+  <p class="alert alert-warning">Le prix est obligatoire</p>
+  }
+  <div>
+    <label for="quantity" class="form-label">Quantité</label>
+    <input
+      id="quantity"
+      name="quantity"
+      type="number"
+      min="0"
+      max="100"
+      [(ngModel)]="product()!.quantity"
+      #quantity="ngModel"
+      class="form-control"
+      required
+      [value]="product()!.quantity"
+    />
+  </div>
+  @if(price.hasError('required')){
+  <p class="alert alert-warning">La quantité est obligatoire</p>
+  } @if(price.hasError('pattern')){
+  <p class="alert alert-warning">Veuillez renseigner la quantité du produit</p>
+  }
+  <input type="submit" [value]="buttonName()" class="btn btn-light" (click)="methodProduct()"/>
+</form>

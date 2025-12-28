@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-center">Panier</h1>
+  <ul class="list-group">
+    @for(ol of orderLines(); track $index){
+    <li class="list-group-item my-2">
+      <span class="mx-3">{{ ol.product.name }}</span>
+      <input
+      id="quantity"
+      class="mx-3 text-center"
+        type="number"
+        min="0"
+        [max]="ol.product.quantity"
+        [value]="ol.quantity"
+        (input)="changeQuantity($event, $index)"
+      />
+      <span class="mx-3">{{ ol.price }}€</span>
+      <button
+        class="btn btn-danger mx-3"
+        aria-label="supprimer le produit"
+        (click)="delete($index)"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </li>
+    }
+  </ul>
+  <div class="my-2 fw-bold">Prix total : {{totalPrice()}}€</div>
+  <button class="btn btn-light" (click)="validate()">Valider le panier</button>
+</div>

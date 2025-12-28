@@ -1,0 +1,146 @@
+<div class="container p-5">
+<h1 class="text-center">S'inscrire</h1>
+<form (ngSubmit)="inscrire()" #form="ngForm" >
+  <div class="field">
+    <label class="form-label" for="lastname">Nom</label>
+    <input
+      type="text"
+      id="lastname"
+      name="lastname"
+      class="form-control"
+      minlength="2"
+      maxlength="50"
+      required
+      pattern="\D+"
+      [(ngModel)]="user.lastname"
+      #lastname="ngModel"
+    />
+  </div>
+  @if (lastname.hasError('required')) {
+  <div class="alert alert-warning">Votre nom est obligatoire</div>
+  } @if(lastname.hasError('minlength') || lastname.hasError('maxlength') ||
+  lastname.errors?.['pattern'] ){
+  <p class="alert alert-warning">Votre nom doit contenir entre 2 et 50 lettres</p>
+  }
+  <div class="field">
+    <label class="form-label" for="firstname">Prénom</label>
+    <input
+      type="text"
+      id="firstname"
+      name="firstname"
+      class="form-control"
+      minlength="2"
+      maxlength="50"
+      required
+      pattern="\D+"
+      [(ngModel)]="user.firstname"
+      #firstname="ngModel"
+    />
+  </div>
+  @if (firstname.hasError('required')) {
+  <div class="alert alert-warning">Votre prénom est obligatoire</div>
+  } @if(firstname.hasError('minlength') || firstname.hasError('maxlength') ||
+  firstname.errors?.['pattern'] ){
+  <p class="alert alert-warning">Votre prénom doit contenir entre 2 et 50 lettres</p>
+  }
+  <div class="field">
+    <label class="form-label" for="username">Nom d'utilisateur</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      class="form-control"
+      minlength="2"
+      maxlength="50"
+      required
+      pattern="\D+"
+      [(ngModel)]="user.username"
+      #username="ngModel"
+    />
+  </div>
+  @if (username.hasError('required')) {
+  <div class="alert alert-warning">Votre pseudo est obligatoire</div>
+  } @if(username.hasError('minlength') || username.hasError('maxlength') ||
+  username.errors?.['pattern'] ){
+  <p class="alert alert-warning">Votre pseudo doit contenir entre 2 et 50 lettres</p>
+  }
+  <div class="field">
+    <label class="form-label" for="password">Mot de passe</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      class="form-control"
+      [(ngModel)]="user.password"
+      #password="ngModel"
+      pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@:#?!&]).+$"
+      minlength="8"
+      required
+    />
+  </div>
+  @if (password.hasError('required')) {
+  <div class="alert alert-warning">Votre nom est obligatoire</div>
+  } @if(password.hasError('minlength')){
+  <p class="alert alert-warning">Votre mot de passe doit contenir au moins 8 caractères</p>
+  } @if(password.errors?.['pattern']){
+  <p class="alert alert-warning">
+    Votre mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère
+    spécial ('@/:#?!&')
+  </p>
+  }
+  <div class="field">
+    <label class="form-label" for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-control"
+      required
+      pattern="^(?=.{1,64}@)[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$"
+      [(ngModel)]="user.email"
+      #email="ngModel"
+    />
+  </div>
+  @if (email.hasError('required')) {
+  <div class="alert alert-warning">Votre email est obligatoire</div>
+  } @if( email.errors?.['pattern'] ){
+  <p class="alert alert-warning">Entrez une adresse email valide!</p>
+  }
+  <div class="field">
+    <label class="form-label" for="phoneNumber">Numéro de téléphone</label>
+    <input
+      type="tel"
+      id="phoneNumber"
+      name="phoneNumber"
+      class="form-control"
+      required
+      pattern="[0-9]{8,15}"
+      [(ngModel)]="user.phoneNumber"
+      #phoneNumber="ngModel"
+    />
+  </div>
+  @if (phoneNumber.hasError('required')) {
+  <div class="alert alert-warning">Votre numéro de téléphone est obligatoire</div>
+  } @if( phoneNumber.errors?.['pattern'] ){
+  <p class="alert alert-warning">Entrez un numéro de téléphone valide (ex: 0700000000)!</p>
+  }
+  <div class="field">
+    <label class="form-label" for="address">Adresse</label>
+    <input
+      type="text"
+      id="address"
+      name="address"
+      class="form-control"
+      minlength="5"
+      maxlength="100"
+      required
+      [(ngModel)]="user.address"
+      #address="ngModel"
+    />
+  </div>
+  @if (address.invalid) {
+  <div class="alert alert-warning">Votre adresse est obligatoire</div>
+  }
+  <input class="actions" type="submit" value="S'inscrire" [disabled]="form.invalid" />
+</form>
+</div>

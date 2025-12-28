@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="text-center">{{ product().name }}</h1>
+  <div class="m-5 row">
+    <img class="card-img-top img-fluid my-5" [src]="`${product().image}.jpg`" alt="`${p.name}`" />
+    <div class="col-8">
+      <h3 class="card-title">{{ product().name }}</h3>
+      <p class="card-text">
+        @for(criteria of product().description.split('-'); track $index){
+        <span class="badge rounded-pill text-bg-light">{{ criteria }}</span>
+        }
+      </p>
+    </div>
+    <div class="col-4 row align-items-center">
+      <form class="col-8" (ngSubmit)="addToCart()" #form="ngForm">
+        <label class="form-label" for="quantity">Quantité</label>
+        <input
+          class="form-control"
+          id="quantity"
+          type="number"
+          min="1"
+          [max]="product().quantity"
+          name="quantity"
+          [(ngModel)]="productQuantity"
+        />
+        <input class="btn btn-light my-2" type="submit" value="Ajouter au panier" />
+      </form>
+      <span class="col-4"
+        ><strong>{{ product().price }}€</strong></span
+      >
+    </div>
+  </div>
+</div>
