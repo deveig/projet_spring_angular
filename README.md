@@ -1,3 +1,5 @@
 # Site web, application ecommerce
 
-Frontend with Angular and Backend with Spring.
+- Frontend : Angular
+- Backend : Spring
+- Database : MySQL
