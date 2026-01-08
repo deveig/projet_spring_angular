@@ -50,7 +50,7 @@
       required
       [(ngModel)]="product()!.image"
       #image="ngModel"
-      [value]="product()!.image"
+      [value]=""
     />
   </div>
   @if(image.hasError('required')){
