@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -48,7 +47,7 @@ public class UserController {
             )
     })
     @GetMapping
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAll());
     }
@@ -82,7 +81,7 @@ public class UserController {
             )
     })
     @GetMapping("/{id}")
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDTO> getAllUsers(@PathVariable Long id){
         return ResponseEntity.ok(userService.getById(id));
     }
@@ -233,7 +232,7 @@ public class UserController {
             )
     })
     @PutMapping("/{id}")
-    @Secured({"USER"})
+    // @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.update(id, userDTO));
     }
@@ -267,7 +266,7 @@ public class UserController {
             )
     })
     @DeleteMapping("/{id}")
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDTO> delete(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.noContent().build();

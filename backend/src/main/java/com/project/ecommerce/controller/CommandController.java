@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,7 +44,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<CommandDTO>> getAllCommands(){
         return ResponseEntity.ok(commandService.getAll());
@@ -78,7 +78,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<CommandDTO> getById(@PathVariable Long id){
         return ResponseEntity.ok(commandService.getById(id));
@@ -112,7 +112,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"USER"})
+    // @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<CommandDTO> createCommand(@RequestBody CommandDTO commandDTO){
         CommandDTO command = commandService.saveCommand(commandDTO);
@@ -153,7 +153,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // Authorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<CommandDTO> update(@PathVariable Long id, @RequestBody CommandDTO commandDTO){
         return ResponseEntity.ok(commandService.update(id, commandDTO));
@@ -187,7 +187,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<CommandDTO> delete(@PathVariable Long id){
         commandService.delete(id);
@@ -222,7 +222,7 @@ public class CommandController {
                     )
             )
     })
-    @Secured({"USER"})
+    // @PreAuthorize("hasRole('USER')")
     @GetMapping("/search/userId")
     public ResponseEntity<CommandDTO> searchByUser(@RequestParam Long userId){
         return ResponseEntity.ok(commandService.getById(userId));

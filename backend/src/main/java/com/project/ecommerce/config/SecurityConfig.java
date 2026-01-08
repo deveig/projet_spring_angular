@@ -24,7 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true)
+// @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Autowired
@@ -49,9 +49,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(c -> c.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(HttpMethod.POST, "/api/users/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
-                        //anyRequest().authenticated()
+                    .requestMatchers(HttpMethod.POST, "/api/users/**").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/api/users/**").hasRole("USER")
+                    .requestMatchers("/api/users/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                    .requestMatchers("/api/products/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/commands").hasRole("USER")
+                    .requestMatchers("/api/commands/search/userId").hasRole("USER")
+                    .requestMatchers( "/api/commands/**").hasRole("ADMIN")
+                    .requestMatchers("/api/cart/**").hasRole("ADMIN")
+                    //anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

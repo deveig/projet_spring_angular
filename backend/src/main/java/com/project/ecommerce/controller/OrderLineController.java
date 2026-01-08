@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,7 +44,7 @@ public class OrderLineController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<OrderLineDTO>> getAllOrderLines(){
         return ResponseEntity.ok(orderLineService.getAll());
@@ -79,7 +79,7 @@ public class OrderLineController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{commandId}/{productId}")
     public ResponseEntity<OrderLineDTO> getById(@PathVariable Long commandId, @PathVariable Long productId){
         return ResponseEntity.ok(orderLineService.getById(commandId, productId));
@@ -113,7 +113,7 @@ public class OrderLineController {
                     )
             )
     })
-    @Secured({"USER"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<OrderLineDTO> createOrderLine(@RequestBody OrderLineDTO orderLineDTO){
         OrderLineDTO orderLine = orderLineService.saveOrderLine(orderLineDTO);
@@ -155,7 +155,7 @@ public class OrderLineController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{commandId}/{productId}")
     public ResponseEntity<OrderLineDTO> update(@PathVariable Long commandId, @PathVariable Long productId, @RequestBody OrderLineDTO orderLineDTO){
         return ResponseEntity.ok(orderLineService.update(commandId, productId, orderLineDTO));
@@ -190,7 +190,7 @@ public class OrderLineController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{commandId}/{productId}")
     public ResponseEntity<OrderLineDTO> delete(@PathVariable Long commandId, @PathVariable Long productId){
         orderLineService.delete(commandId, productId);

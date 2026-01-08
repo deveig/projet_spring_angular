@@ -112,7 +112,7 @@ public class ProductController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO){
         ProductDTO product = productService.saveProduct(productDTO);
@@ -153,7 +153,7 @@ public class ProductController {
                     )
             )
     })
-    @Secured({"ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO){
         return ResponseEntity.ok(productService.update(id, productDTO));
@@ -188,7 +188,7 @@ public class ProductController {
             )
     })
     @DeleteMapping("/{id}")
-    @Secured({"ROLE_ADMIN"})
+    // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductDTO> delete(@PathVariable Long id){
         productService.delete(id);
         return ResponseEntity.noContent().build();
