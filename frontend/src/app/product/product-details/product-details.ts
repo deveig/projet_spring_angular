@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   productQuantity: number = 1;
   router = inject(Router);
-  store = inject(Store)
+  store = inject(Store);
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.productService.findById(params['id']).subscribe({
@@ -36,15 +36,20 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   addToCart() {
-    if (this.product().quantity >= this.productQuantity && this.product().quantity != 0) {
-      // this.product().quantity -= this.quantity();
-      console.log(this.productQuantity)
-      let orderline: Orderline = {product: this.product(), quantity: this.productQuantity, price: this.product().price * this.productQuantity};
-      this.store.dispatch(addItem({orderline: orderline}));
-      this.store.dispatch(calculateTotalPrice())
-      
-    } else {
-      console.log("La quantité n'est pas diponible");
+    if (localStorage.getItem('user')) {
+      if (this.product().quantity >= this.productQuantity && this.product().quantity != 0) {
+        // this.product().quantity -= this.quantity();
+        console.log(this.productQuantity);
+        let orderline: Orderline = {
+          product: this.product(),
+          quantity: this.productQuantity,
+          price: this.product().price * this.productQuantity,
+        };
+        this.store.dispatch(addItem({ orderline: orderline }));
+        this.store.dispatch(calculateTotalPrice());
+      } else {
+        console.log("La quantité n'est pas diponible");
+      }
     }
   }
 }

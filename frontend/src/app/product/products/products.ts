@@ -28,17 +28,22 @@ export class ProductsComponent implements OnInit {
     });
   }
   addToCart(index: number) {
-
-        if (this.products().at(index)!.quantity >= 1) {
-          const orderline: Orderline = {product: this.products().at(index)!, quantity: 1, price: this.products().at(index)!.price};
-          this.store.dispatch(addItem({ orderline: orderline }));
-          this.store.dispatch(calculateTotalPrice())
-          alert("La tisane est ajoutée au panier.")
-        } else {
-          this.message.set('Rupture de stock');
-        }
+    if (localStorage.getItem('user')) {
+      if (this.products().at(index)!.quantity >= 1) {
+        const orderline: Orderline = {
+          product: this.products().at(index)!,
+          quantity: 1,
+          price: this.products().at(index)!.price,
+        };
+        this.store.dispatch(addItem({ orderline: orderline }));
+        this.store.dispatch(calculateTotalPrice());
+        alert('La tisane est ajoutée au panier.');
+      } else {
+        this.message.set('Rupture de stock');
       }
-  
+    }
+  }
+
   selectByCriteria(event: Event) {
     const criteria = (event.target as HTMLSelectElement).value;
     if (this.criterias.some((c) => c == criteria)) {
