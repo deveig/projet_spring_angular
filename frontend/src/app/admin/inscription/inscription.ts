@@ -12,8 +12,8 @@ import { UserModel } from '../../user/user-model';
 })
 export class InscriptionAdminComponent {
   user: UserModel = {
-    lastname: '',
-    firstname: '',
+    lastName: '',
+    firstName: '',
     address: '',
     phoneNumber: '',
     email: '',

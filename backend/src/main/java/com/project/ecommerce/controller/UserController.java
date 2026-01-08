@@ -48,7 +48,7 @@ public class UserController {
             )
     })
     @GetMapping
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ADMIN"})
     public ResponseEntity<List<UserDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAll());
     }
@@ -82,7 +82,7 @@ public class UserController {
             )
     })
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ADMIN"})
     public ResponseEntity<UserDTO> getAllUsers(@PathVariable Long id){
         return ResponseEntity.ok(userService.getById(id));
     }
@@ -233,7 +233,7 @@ public class UserController {
             )
     })
     @PutMapping("/{id}")
-    @Secured({"ROLE_USER"})
+    @Secured({"USER"})
     public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.update(id, userDTO));
     }
@@ -267,7 +267,7 @@ public class UserController {
             )
     })
     @DeleteMapping("/{id}")
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ADMIN"})
     public ResponseEntity<UserDTO> delete(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.noContent().build();

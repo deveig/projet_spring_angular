@@ -12,8 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class InscriptionComponent {
   user: UserModel = {
-    lastname: '',
-    firstname: '',
+    lastName: '',
+    firstName: '',
     address: '',
     phoneNumber: '',
     email: '',

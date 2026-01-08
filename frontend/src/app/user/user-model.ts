@@ -3,8 +3,8 @@ import { Token } from "./token";
 
 export interface UserModel {
     id?: number;
-    lastname?: string;
-    firstname?: string;
+    lastName?: string;
+    firstName?: string;
     address?: string;
     phoneNumber?: string;
     email?: string;

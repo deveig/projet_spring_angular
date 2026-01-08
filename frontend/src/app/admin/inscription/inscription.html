@@ -12,7 +12,7 @@
       maxlength="50"
       required
       pattern="\D+"
-      [(ngModel)]="user.lastname"
+      [(ngModel)]="user.lastName"
       #lastname="ngModel"
     />
   </div>
@@ -33,7 +33,7 @@
       maxlength="50"
       required
       pattern="\D+"
-      [(ngModel)]="user.firstname"
+      [(ngModel)]="user.firstName"
       #firstname="ngModel"
     />
   </div>
@@ -114,7 +114,7 @@
       name="phoneNumber"
       class="form-control"
       required
-      pattern="\d{8, 15}"
+      pattern="[0-9]{8,15}"
       [(ngModel)]="user.phoneNumber"
       #phoneNumber="ngModel"
     />
