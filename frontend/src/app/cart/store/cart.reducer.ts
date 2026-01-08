@@ -49,6 +49,6 @@ export const cartReducer = createReducer(
   })),
   on(CartActions.calculateTotalPrice, (state) => ({
     ...state,
-    totalPrice: state.orderLines.map((ol) => ol.price).reduce((acc, curr) => acc + curr),
+    totalPrice: state.orderLines.length == 0 ? 0 :  state.orderLines.map((ol) => ol.price).reduce((acc, curr) => acc + curr),
   }))
 );
