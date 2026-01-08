@@ -23,7 +23,7 @@ export class ConnexionAdminComponent {
         localStorage.setItem('admin', JSON.stringify(this.user));
         localStorage.setItem('token', JSON.stringify(token));
         this.logService.isConnected(true);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/admin/products');
       },
       error: (error) => {
         console.log(error);
