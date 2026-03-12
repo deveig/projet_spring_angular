@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ValueChangeEvent } from '@angular/forms';
 import { Product } from '../../product/product';
 import { ProductService } from '../../product/product-service';
 import { Router } from '@angular/router';
@@ -25,13 +25,19 @@ export class ProductFormComponent {
   productService = inject(ProductService);
   router = inject(Router);
   add() {
-    this.product().image = this.product().image.replace('C:\\fakepath\\', '').split('.')[0];
     this.productService.save(this.product()).subscribe({
       complete: () => this.router.navigateByUrl('/admin/products'),
       error: (err) => {
-        console.log(err);
-        this.message.set('Le produit a pu être sauvegardé');
+        // console.log(err);
+        if (err.status === 400) {
+          this.message.set('Projet portfolio : pas de données sauvegardées');
+        } else {
+          this.message.set("Le produit n'a pas pu être sauvegardé");
+        }
       },
     });
+  }
+  setImage(value: string) {
+    this.product().image = value.replace('C:\\fakepath\\', '').split('.')[0];
   }
 }

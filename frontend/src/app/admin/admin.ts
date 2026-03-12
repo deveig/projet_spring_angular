@@ -1,9 +1,6 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { UserModel } from '../user/user-model';
-import { AdminService } from './admin-service';
-import { LoginLogoutService } from '../user/login-logout';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',

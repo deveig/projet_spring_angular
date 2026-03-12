@@ -28,5 +28,8 @@
         ><strong>{{ product().price }}€</strong></span
       >
     </div>
+    @if(message){
+      <p class="text-danger fw-bold">{{ message }}</p>
+    }
   </div>
 </div>

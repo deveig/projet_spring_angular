@@ -1,5 +1,14 @@
 package com.project.ecommerce.init;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
 import com.project.ecommerce.entity.Command;
 import com.project.ecommerce.entity.OrderLine;
 import com.project.ecommerce.entity.Product;
@@ -8,14 +17,6 @@ import com.project.ecommerce.repository.CommandRepository;
 import com.project.ecommerce.repository.OrderLineRepository;
 import com.project.ecommerce.repository.ProductRepository;
 import com.project.ecommerce.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -74,7 +75,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Product product2 = new Product();
         product2.setName("Tisane fruitée");
-        product2.setDescription("- Mûre \n- Orange\n- Pomme");
+        product2.setDescription("- Mure \n- Orange\n- Pomme");
         product2.setImage("url2");
         product2.setPrice(3.00);
         product2.setQuantity(20);

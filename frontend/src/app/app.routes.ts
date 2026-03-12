@@ -24,9 +24,9 @@ export const routes: Routes = [
       { path: 'products', component: ProductsListComponent },
       { path: 'product-edit/:id', component: ProductEditComponent },
       { path: 'product-form', component: ProductFormComponent },
-      { path: '', redirectTo: '/admin', pathMatch: 'full' },
+      { path: '', redirectTo: 'admin', pathMatch: 'full' },
     ], canActivate: [adminGuard]
-  },
+  }, 
   { path: 'cart', component: CartComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: UserComponent },

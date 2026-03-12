@@ -3,7 +3,7 @@
   @if(message()){
   <p class="alert alert-danger">{{ message() }}</p>
   }
-  <app-generic-product-form [product]="product()" [buttonName]="buttonName" (sendMethod)="add()" />
+  <app-generic-product-form [product]="product()" [buttonName]="buttonName" (sendImageMethod)="setImage($event)" (sendProductMethod)="add()" />
 </div>
 <!-- <form (ngSubmit)="add" #form="ngForm">
   <div>

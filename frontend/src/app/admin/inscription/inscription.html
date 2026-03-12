@@ -96,16 +96,16 @@
       name="email"
       class="form-control"
       required
-      pattern="^(?=.{1,64}@)[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$"
       [(ngModel)]="user.email"
       #email="ngModel"
     />
   </div>
   @if (email.hasError('required')) {
   <div class="alert alert-warning">Votre email est obligatoire</div>
-  } @if( email.errors?.['pattern'] ){
+  } 
+  <!-- @if( email.errors?.['pattern'] ){
   <p class="alert alert-warning">Entrez une adresse email valide!</p>
-  }
+  } -->
   <div class="field">
     <label class="form-label" for="phoneNumber">Numéro de téléphone</label>
     <input
@@ -143,4 +143,7 @@
   }
   <input class="actions" type="submit" value="S'inscrire" [disabled]="form.invalid" />
 </form>
+@if(message()){
+<p class="alert alert-danger">{{message()}}</p>
+}
 </div>

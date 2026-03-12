@@ -1,5 +1,5 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ValueChangeEvent } from '@angular/forms';
 import { Product } from '../../product/product';
 import { ProductService } from '../../product/product-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,7 +31,7 @@ export class ProductEditComponent implements OnInit {
       this.productService.findById(params['id']).subscribe({
         next: (value) => this.product.set(value),
         error: (err) => {
-          console.log(err);
+          // console.log(err);
           this.message.set("Le produit n'existe pas");
         },
       });
@@ -41,9 +41,18 @@ export class ProductEditComponent implements OnInit {
     this.productService.update(this.product().id, this.product()).subscribe({
       complete: () => this.router.navigateByUrl('/admin/products'),
       error: (err) => {
-        console.log(err);
-        this.message.set("Le produit n'a pa pu être modifié");
+        // console.log(err);
+        if (err.status === 400) {
+          this.message.set('Projet portfolio : pas de données modifiées');
+        } else {
+          this.message.set("Le produit n'a pa pu être modifié");
+        }
       },
     });
+  }
+  changeImage(value: string) {
+    if (value != '') {
+      this.product().image = value.replace('C:\\fakepath\\', '').split('.')[0];
+    }
   }
 }

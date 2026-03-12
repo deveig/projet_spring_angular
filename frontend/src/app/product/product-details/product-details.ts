@@ -22,6 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     price: 0.0,
     quantity: 0,
   });
+  message = "";
   productService = inject(ProductService);
   activatedRoute = inject(ActivatedRoute);
   productQuantity: number = 1;
@@ -31,15 +32,14 @@ export class ProductDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.productService.findById(params['id']).subscribe({
         next: (value) => this.product.set(value),
-        error: (err) => console.log(err),
+        error: (err) => //console.log(err)
+        console.log("Internal Server Error"),
       });
     });
   }
   addToCart() {
     if (localStorage.getItem('user')) {
       if (this.product().quantity >= this.productQuantity && this.product().quantity != 0) {
-        // this.product().quantity -= this.quantity();
-        console.log(this.productQuantity);
         let orderline: Orderline = {
           product: this.product(),
           quantity: this.productQuantity,
@@ -47,7 +47,9 @@ export class ProductDetailsComponent implements OnInit {
         };
         this.store.dispatch(addItem({ orderline: orderline }));
         this.store.dispatch(calculateTotalPrice());
+        alert('La tisane est ajoutée au panier.');
       } else {
+        this.message = "Rupture de stock"
         console.log("La quantité n'est pas diponible");
       }
     }

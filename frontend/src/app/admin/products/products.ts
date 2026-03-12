@@ -19,7 +19,7 @@ export class ProductsListComponent {
     this.productService.findAll().subscribe({
       next: (value) => this.products.set(value),
       error: (err) => {
-        console.log(err);
+        // console.log(err);
         this.message.set('Produits non disponibles');
       },
     });
@@ -32,8 +32,12 @@ export class ProductsListComponent {
         this.products().splice(index, 1);
       },
       error: (err) => {
-        console.log(err);
-        this.message.set("Le produit n'a pas pu être supprimé");
+        if (err.status === 400) {
+          this.message.set('Projet portfolio : pas de données supprimées');
+        } else {
+          // console.log(err);
+          this.message.set("Le produit n'a pas pu être supprimé");
+        }
       },
     });
   }

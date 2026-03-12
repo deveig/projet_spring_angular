@@ -1,6 +1,6 @@
-import { Component, Input, input, model, OnInit, output } from '@angular/core';
-import { Product } from '../../product/product';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Product } from '../../product/product';
 
 @Component({
   selector: 'app-generic-product-form',
@@ -9,11 +9,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './generic-product-form.css',
 })
 export class GenericProductForm {
-  product = input<Product>() 
+  product = input<Product>()
   buttonName = input.required<string>();
-  sendMethod = output();
-  methodProduct() {
-    this.sendMethod.emit();
+  sendProductMethod = output();
+  sendImageMethod = output<string>();
+  productMethod() {
+    this.sendProductMethod.emit();
   }
-
+  imageMethod(event: Event) {
+    this.sendImageMethod.emit((event.target as HTMLInputElement).value);
+  } 
 }

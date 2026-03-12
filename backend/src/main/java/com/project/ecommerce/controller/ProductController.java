@@ -1,23 +1,30 @@
 package com.project.ecommerce.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.project.ecommerce.dto.ProductDTO;
 import com.project.ecommerce.service.ProductService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.ErrorResponse;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
 
 @Tag(name = "Produits", description = "API de gestion des produits")
 @RestController
@@ -115,13 +122,14 @@ public class ProductController {
     // @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO){
-        ProductDTO product = productService.saveProduct(productDTO);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(product.getId())
-                .toUri();
-        return ResponseEntity.created(location).body(product);
+        // ProductDTO product = productService.saveProduct(productDTO);
+        // URI location = ServletUriComponentsBuilder
+        //         .fromCurrentRequest()
+        //         .path("/{id}")
+        //         .buildAndExpand(product.getId())
+        //         .toUri();
+        // return ResponseEntity.created(location).body(product);
+        return ResponseEntity.badRequest().build();
     }
 
     /**
@@ -156,7 +164,8 @@ public class ProductController {
     // @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO){
-        return ResponseEntity.ok(productService.update(id, productDTO));
+        // return ResponseEntity.ok(productService.update(id, productDTO));
+        return ResponseEntity.badRequest().build();
     }
 
     /**
@@ -190,8 +199,9 @@ public class ProductController {
     @DeleteMapping("/{id}")
     // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductDTO> delete(@PathVariable Long id){
-        productService.delete(id);
-        return ResponseEntity.noContent().build();
+        // productService.delete(id);
+        // return ResponseEntity.noContent().build();
+        return ResponseEntity.badRequest().build();
     }
 
     /**

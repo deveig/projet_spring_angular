@@ -23,14 +23,16 @@
           <li class="nav-item col-2 text-lg-end" routerLinkActive="active">
             <a class="nav-link active text-warning-emphasis" aria-current="page" routerLink="/cart"
               ><i class="fa-solid fa-basket-shopping"></i
-            ></a>
+            >Panier</a>
           </li>
           <li class="nav-item col-2 text-lg-end">
-            <button type="button" title="Se connecter" aria-label="Se connecter" class="btn btn-link text-black" [hidden]="isConnected()" (click)="login()">
+            <button type="button" aria-label="Se connecter" class="btn btn-link text-black" [hidden]="isConnected()" (click)="login()">
               <i class="fa-solid fa-user"></i>
+              Se connecter
             </button>
-            <button type="button" class="btn btn-link text-success" title="Se déconnecter" aria-label="Se déconnecter" [hidden]="!isConnected()" (click)="logout()">
+            <button type="button" class="btn btn-link text-success" aria-label="Se déconnecter" [hidden]="!isConnected()" (click)="logout()">
               <i class="fa-solid fa-user"></i>
+              Se déconnecter
             </button>
           </li>
         </ul>

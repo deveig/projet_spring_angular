@@ -12,10 +12,11 @@
       pattern="\D+"
     />
   </div>
-  @if(name.hasError('required')){
-  <p class="alert alert-warning">Le nom est obligatoire</p>
-  } @if(name.hasError('pattern')){
-  <p class="alert alert-warning">Veuillez renseigner le nom du produit</p>
+  @if (name.hasError('required')) {
+    <p class="alert alert-warning">Le nom est obligatoire</p>
+  }
+  @if (name.hasError('pattern')) {
+    <p class="alert alert-warning">Veuillez renseigner le nom du produit</p>
   }
   <div>
     <label for="description" class="form-label">Description (liste des parfums)</label>
@@ -32,12 +33,13 @@
       pattern="(-[A-Z][a-z]+)+"
     ></textarea>
   </div>
-  @if(description.hasError('required')){
-  <p class="alert alert-warning">La description est obligatoire</p>
-  } @if(description.hasError('pattern')){
-  <p class="alert alert-warning">
-    Veuillez renseigner la description du produit (ex: -Menthe-Camomille, ...)
-  </p>
+  @if (description.hasError('required')) {
+    <p class="alert alert-warning">La description est obligatoire</p>
+  }
+  @if (description.hasError('pattern')) {
+    <p class="alert alert-warning">
+      Veuillez renseigner la description du produit (ex: -Menthe-Camomille ...)
+    </p>
   }
   <div>
     <label class="form-label" for="image">Image</label>
@@ -48,14 +50,9 @@
       type="file"
       accept="image/jpg, image/jpeg"
       required
-      [(ngModel)]="product()!.image"
-      #image="ngModel"
-      [value]=""
+      (input)="imageMethod($event)"
     />
   </div>
-  @if(image.hasError('required')){
-  <p class="alert alert-warning">L'image est obligatoire</p>
-  }
   <div>
     <label for="price" class="form-label">Prix</label>
     <input
@@ -63,7 +60,7 @@
       name="price"
       type="number"
       step="0.01"
-      min="0"
+      min="1"
       max="100"
       [(ngModel)]="product()!.price"
       #price="ngModel"
@@ -72,8 +69,8 @@
       [value]="product()!.price"
     />
   </div>
-  @if(price.hasError('required')){
-  <p class="alert alert-warning">Le prix est obligatoire</p>
+  @if (price.hasError('required') || price.value === 0) {
+    <p class="alert alert-warning">Le prix est obligatoire</p>
   }
   <div>
     <label for="quantity" class="form-label">Quantité</label>
@@ -81,7 +78,7 @@
       id="quantity"
       name="quantity"
       type="number"
-      min="0"
+      min="1"
       max="100"
       [(ngModel)]="product()!.quantity"
       #quantity="ngModel"
@@ -90,10 +87,8 @@
       [value]="product()!.quantity"
     />
   </div>
-  @if(price.hasError('required')){
-  <p class="alert alert-warning">La quantité est obligatoire</p>
-  } @if(price.hasError('pattern')){
-  <p class="alert alert-warning">Veuillez renseigner la quantité du produit</p>
+  @if (quantity.hasError('required') || quantity.value === 0) {
+    <p class="alert alert-warning">La quantité est obligatoire</p>
   }
-  <input type="submit" [value]="buttonName()" class="btn btn-light" (click)="methodProduct()"/>
+  <input type="submit" [value]="buttonName()" [disabled]="name.invalid || description.invalid || price.invalid || quantity.invalid"  class="btn btn-light" (click)="productMethod()" />
 </form>

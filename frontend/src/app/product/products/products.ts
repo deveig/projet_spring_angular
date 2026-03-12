@@ -24,7 +24,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.findAll().subscribe({
       next: (value) => this.products.set(value),
-      error: (err) => console.log(err),
+      error: (err) => //console.log(err)
+      console.log("Internal Server Error"),
     });
   }
   addToCart(index: number) {
