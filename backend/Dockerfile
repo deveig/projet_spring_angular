@@ -11,4 +11,4 @@ RUN mvn -B package --file pom.xml -DskipTests
 FROM ibm-semeru-runtimes:open-17-jdk AS production-stage
 RUN mkdir /opt/app
 COPY --from=build-stage /app/target/ecommerce-0.0.1-SNAPSHOT.jar /opt/app
-CMD ["java", "-jar", "/opt/app/ecommerce-0.0.1-SNAPSHOT.jar"]
+# CMD ["java", "-jar", "/opt/app/ecommerce-0.0.1-SNAPSHOT.jar"]
