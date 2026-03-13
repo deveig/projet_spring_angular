@@ -1,3 +1,3 @@
 export const environment = {
-    BACKEND_URL: '/api'
+    BACKEND_URL: '/recipe-ecom/api'
 };
