@@ -13,17 +13,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserComponent {
   user: UserModel = { username: '', password: '' };
-  message = signal<string>("");
+  message = signal<string>('');
   router = inject(Router);
   userService = inject(UserService);
   logService = inject(LoginLogoutService);
   seConnecter() {
     this.userService.findByUsernameAndPassword(this.user).subscribe({
       next: (token) => {
-        localStorage.setItem('user', JSON.stringify(this.user));
-        localStorage.setItem('token', JSON.stringify(token));
-        this.logService.isConnected(true);
-        this.router.navigateByUrl('/');
+        if(token.role === "USER"){
+          localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('token', JSON.stringify(token));
+          this.logService.isConnected(true);
+          this.router.navigateByUrl('/');
+        } else {
+          this.message.set("Connectez-vous en tant qu'administrateur")
+        }
       },
       error: (error) => {
         // console.log(error);

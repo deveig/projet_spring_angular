@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { GenericService } from '../generic-service';
 import { UserModel } from '../user/user-model';
 import { Observable } from 'rxjs';
-import { Token } from '@angular/compiler';
+import { Token } from '../user/token';
 
 @Injectable({
   providedIn: 'root',

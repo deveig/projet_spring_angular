@@ -20,10 +20,14 @@ export class ConnexionAdminComponent {
   seConnecter() {
     this.userService.findByUsernameAndPassword(this.user).subscribe({
       next: (token) => {
-        localStorage.setItem('admin', JSON.stringify(this.user));
-        localStorage.setItem('token', JSON.stringify(token));
-        this.logService.isConnected(true);
-        this.router.navigateByUrl('/admin/products');
+        if(token.role === "ADMIN"){
+          localStorage.setItem('admin', JSON.stringify(this.user));
+          localStorage.setItem('token', JSON.stringify(token));
+          this.logService.isConnected(true);
+          this.router.navigateByUrl('/admin/products');
+        } else{
+          this.message.set("Vous devez être administrateur")
+        }
       },
       error: (error) => {
         // console.log(error);

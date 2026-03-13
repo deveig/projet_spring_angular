@@ -1,3 +1,6 @@
 export interface Token {
-    value: string;
+    // value: string;
+    token: string;
+    username: string;
+    role: string;
 }
