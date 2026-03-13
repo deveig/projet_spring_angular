@@ -26,7 +26,7 @@ export class UserComponent {
         this.router.navigateByUrl('/');
       },
       error: (error) => {
-        console.log(error);
+        // console.log(error);
         this.message.set("Vous n'êtes pas connu de nos services, inscrivez-vous!");
       },
     });

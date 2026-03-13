@@ -5,3 +5,5 @@
 
 ## Access data
 Access data in browser with `http://localhost:8080/swagger-ui/index.html`
+
+## Github Actions with Docker
