@@ -16,3 +16,5 @@ To subscribe as an administrator use `http://localhost:4200/inscription-admin` o
 ### Use cart
 
 Click on "Ajouter au panier" on products page. Change quantity on cart page or page of a product.
+
+## Github Actions
