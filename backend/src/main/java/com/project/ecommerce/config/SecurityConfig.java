@@ -37,6 +37,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         //configuration.addAllowedOrigin("http://localhost:5500"); // Live server
         configuration.addAllowedOrigin("https://localhost:8093"); // Angular
+        configuration.addAllowedOrigin("https://localhost");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
