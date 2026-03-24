@@ -6,12 +6,12 @@
 
 ## Navigation in the browser
 
-The website is accessible at `http://localhost:4200`.
+The website is accessible at `http://localhost:4000`.
 
 ### Admin part
 
-The admin part is accessible at `http://localhost:4200/admin`.
-To subscribe as an administrator use `http://localhost:4200/inscription-admin` or to log in with an administrator account use `http://localhost:4200/connexion-admin`.
+The admin part is accessible at `/admin`.
+To subscribe as an administrator use `/inscription-admin` or to log in with an administrator account use `/connexion-admin`.
 
 ### Use cart
 

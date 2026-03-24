@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Produits", description = "API de gestion des produits")
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin("http://localhost:4200")
+// @CrossOrigin("http://localhost:4200")
 public class ProductController {
     @Autowired
     private ProductService productService;
