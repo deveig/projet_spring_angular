@@ -24,6 +24,9 @@ app.use('/recipe-ecom/api', async (req, res) => {
       headers: { ...req.headers } as HeadersInit,
       body: req.method === 'GET' ? undefined : req.body,
     });
+    if(response.status === 400){
+      res.status(400).send();
+    }
     res.status(response.status).json(await response.json());
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch recipe' });

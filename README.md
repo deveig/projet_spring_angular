@@ -6,7 +6,7 @@
 
 ## Navigation in the browser
 
-The website is accessible at `http://localhost:4000`.
+The website is accessible at `http://localhost:4200`.
 
 ### Admin part
 
