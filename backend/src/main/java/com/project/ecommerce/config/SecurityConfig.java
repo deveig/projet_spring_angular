@@ -60,6 +60,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/commands/search/userId").hasRole("USER")
                     .requestMatchers( "/api/commands/**").hasRole("ADMIN")
                     .requestMatchers("/api/cart/**").hasRole("ADMIN")
+                    // .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                     //anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
