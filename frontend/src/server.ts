@@ -7,7 +7,7 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
-const browserDistFolder = join(import.meta.dirname, '../recipe-ecom/');
+const browserDistFolder = join(import.meta.dirname, '../ecom/');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
@@ -16,10 +16,10 @@ const angularApp = new AngularNodeAppEngine();
  * Rest API endpoints
  *
  */
-app.use('/recipe-ecom/api', express.raw({ type: '*/*', limit: '10mb' }));
-app.use('/recipe-ecom/api', async (req, res) => {
+app.use('/ecom/api', express.raw({ type: '*/*', limit: '10mb' }));
+app.use('/ecom/api', async (req, res) => {
   try {
-    const response = await fetch(`http://nginx-back:8080${req.originalUrl.split("/recipe-ecom")[1]}`, {
+    const response = await fetch(`http://nginx-back:8080${req.originalUrl.split("/ecom")[1]}`, {
       method: req.method,
       headers: { ...req.headers } as HeadersInit,
       body: req.method === 'GET' ? undefined : req.body,
