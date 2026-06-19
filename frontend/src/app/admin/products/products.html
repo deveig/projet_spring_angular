@@ -2,7 +2,7 @@
   <h2 class="text-center my-3">Gestion des produits</h2>
   <ul class="col-10 row">
     @for(p of products(); track $index){
-    <li class="col-3 card m-3 p-3">
+    <li class="col-lg-3 col-xs-3 card m-3 p-3">
       <img class="card-img-top img-fluid" [src]="`${p.image}.jpg`" [alt]="`${p.name}`" />
       <h3 class="card-title">{{ p.name }}</h3>
       <p class="card-text">

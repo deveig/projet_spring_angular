@@ -11,7 +11,7 @@
       </p>
     </div>
     <div class="col-4 row align-items-center">
-      <form class="col-8" (ngSubmit)="addToCart()" #form="ngForm">
+      <form class="d-flex flex-column" (ngSubmit)="addToCart()" #form="ngForm">
         <label class="form-label" for="quantity">Quantité</label>
         <input
           class="form-control"
@@ -22,11 +22,11 @@
           name="quantity"
           [(ngModel)]="productQuantity"
         />
+        <span class="align-self-end"
+          ><strong>{{ product().price }}€</strong></span
+        >
         <input class="btn btn-light my-2" type="submit" value="Ajouter au panier" />
       </form>
-      <span class="col-4"
-        ><strong>{{ product().price }}€</strong></span
-      >
     </div>
     @if(message){
       <p class="text-danger fw-bold">{{ message }}</p>

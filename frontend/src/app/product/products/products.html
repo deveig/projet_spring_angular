@@ -3,7 +3,7 @@
   <p></p>
   <h2>Les tisanes</h2>
   <div class="row my-5">
-    <div class="col-2">
+    <div class="col-lg-2 col-xs-5">
       <label class="form-label" for="criterias">Le parfum</label>
       <select
         (change)="selectByCriteria($event)"
@@ -17,9 +17,9 @@
         }
       </select>
     </div>
-    <ul class="col-10 row">
+    <ul class="col-lg-10 col-xs-7 row">
       @for(p of products(); track $index){
-      <li class="col-3 card m-3 p-3">
+      <li class="col-lg-3 col-xs-1 card m-3 p-3">
         <a [routerLink]="['/product-details', p.id]">
           <img class="card-img-top img-fluid" [src]="`${p.image}.jpg`" [alt]="`${p.name}`" />
           <h3 class="card-title">{{ p.name }}</h3>
